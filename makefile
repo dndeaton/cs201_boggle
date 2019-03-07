@@ -11,7 +11,7 @@ $(TARGET): $(OBJFILES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LDFLAGS)
 
 grabdict:
-	grep -v "'\|^[A-Z]\|é" /usr/share/dict/words> "prelimdict.txt";
+	grep -v "'\|^[A-Z]\|é\|è\|ä\|ç" /usr/share/dict/words> "prelimdict.txt";
 	grep -x "^..\+." prelimdict.txt> "dict.txt";
 	rm prelimdict.txt
 

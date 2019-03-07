@@ -12,71 +12,51 @@
 
 int main(void)
 {
-FILE* fp =fopen("text.txt","r");
+FILE* fp =fopen("dict.txt","r");
 char c;
 c=fgetc(fp);
 dictrie* root=calloc(1,sizeof(dictrie));
-root=maketrie("wrong",root);
-printf("%c\n", root->children['w'-'a']->letter);
-dictrie* temp=root;
-temp=temp->children['w'-'a'];
-temp=temp->children['r'-'a'];
-printf("%c\n", temp->letter);
-printf("%d\n",temp->isend );
-temp=temp->children['o'-'a'];
-printf("%c\n", temp->letter);
-temp=temp->children['n'-'a'];
-printf("%c\n", temp->letter);
-temp=temp->children['g'-'a'];
-printf("%c\n", temp->letter);
-printf("%d\n",temp->isend );
-// while(c!= EOF)
-// 	{
-// 		char temp[100]={0};
-// 		int len=0;
-// 		while(c!='\n'&& c!= EOF)
-// 		{
-// 			temp[len++]=c;
-// 			//printf("%d\n", len );
-// 			c = fgetc(fp);
+// printf("%c\n", root->children['w'-'a']->letter);
+// dictrie* temp=root;
+// temp=temp->children['w'-'a'];
+// temp=temp->children['r'-'a'];
+// printf("%c\n", temp->letter);
+// printf("%d\n",temp->isend );
+// temp=temp->children['o'-'a'];
+// printf("%c\n", temp->letter);
+// temp=temp->children['n'-'a'];
+// printf("%c\n", temp->letter);
+// temp=temp->children['g'-'a'];
+// printf("%c\n", temp->letter);
+// printf("%d\n",temp->isend );
+while(c!= EOF)
+	{
+		char temp[100]={0};
+		int len=0;
+		while(c!='\n'&& c!= EOF)
+		{
+			temp[len++]=c;
+			//printf("%d\n", len );
+			c = fgetc(fp);
 		
 
-// 		}
+		}
 
 		
-// 			c=fgetc(fp);
-// 			// printf("notap\n");
-// 			char* word=malloc(len*sizeof(char));
-// 			for (int i = 0; i < len; ++i)
-// 			{
-// 				word[i]=temp[i];
-// 			}
-// 			printf("%s\n", word);//make trie here
+			c=fgetc(fp);
+			// printf("notap\n");
+			char* word=malloc(len*sizeof(char));
+			for (int i = 0; i < len; ++i)
+			{
+				word[i]=temp[i];
+			}
+			// printf("%s\n", word);//make trie here
+			root=maketrie(word,root);
 
 		
-// 	}
+	}
  fclose(fp);
 
 
 
-
-
-
-
-
-
-
-//not printing read from list. prob cause is eof after not \n. add if con to fix?
-
-
 }//end main
-
-
-
-// void maketrie(dictrie* root, char* word)
-// 	{
-// 		for (int i = 0; word[i]!='' ; ++i)
-// 		{
-// 			/* code */
-// 		}
-// 	}

@@ -153,11 +153,27 @@ dictrie* maketrie(char *word, dictrie* root)
 		else node->isend=false;
 	
 		trav->children[(int)(x-'a')]=node;
+		trav=trav->children[(int)(x-'a')];
+		}
+		else if(trav->children[x-'a']!=NULL)
+		{
+		trav=trav->children[(int)(x-'a')];
+		if (word[i+1]=='\0')
+		{
+		trav->isend=true;
+		}
+		else trav->isend=false;
 		}
 	
 	
-	trav=trav->children[(int)(x-'a')];
-	printf("%c\n", trav->letter );
+	//trav=trav->children[(int)(x-'a')];
+	
+	if (trav->isend==false)
+	{
+		printf("%c", trav->letter );
+	}
+	else printf("%c\n", trav->letter );
+
 	}
 	
 	return temp;
