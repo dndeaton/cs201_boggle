@@ -30,7 +30,6 @@ CS 201
 /*
 TO DO
 
->fix exit case printout
 >
 >Make template for "change window"
 >Make Help window
@@ -63,22 +62,19 @@ init_pair(2,COLOR_WHITE,COLOR_MAGENTA);
 
 //change terminal background idk how
 //wbkgd(stdwin,COLOR_PAIR(2));
-int h=25;//window size setup
-int w=65;
-int offsety=5;
-int offsetx=5;
-int currentx;
-int currenty;
-//Checking if window is big enough for game to function
-getmaxyx(stdscr,currenty,currentx);
-while (currenty<(h+offsety+5) || currentx<(w+offsetx+5) )//+5 for visual buffer
-{
-	mvprintw(0,0,"Please resize window to be larger for best game experience");
-	getmaxyx(stdscr,currenty,currentx);
-	refresh();
-}
-//napms(2000);//works but idk how to do it right
-clear();
+
+// int currentx;
+// int currenty;
+// //Checking if window is big enough for game to function
+// getmaxyx(stdscr,currenty,currentx);
+// while (currenty<(h+offsety+5) || currentx<(w+offsetx+5) )//+5 for visual buffer
+// {
+// 	mvprintw(0,0,"Please resize window to be larger for best game experience");
+// 	getmaxyx(stdscr,currenty,currentx);
+// 	refresh();
+// }
+// //napms(2000);//works but idk how to do it right
+// clear();
 refresh();
 
 //checking supported colors 256
@@ -101,36 +97,32 @@ menuholder=new_menu((ITEM**)mainmenu);
 
 // menu=newwin(h,w,offsety,offsetx);
 
-
 panelnames* menu=malloc(sizeof(panelnames));
 makepanel(&menu,"menu");
+resizemenu(menu, menuholder);
 
 
 
 
-
-WINDOW* menuwindow;
-wbkgd(panel_window(menu->p),COLOR_PAIR(2));
-set_menu_fore(menuholder,COLOR_PAIR(2));
-set_menu_back(menuholder,COLOR_PAIR(2));
-//wbkgd(menu,COLOR_PAIR(1));
-menuwindow=derwin(panel_window(menu->p),10,20,12,3);//adjust last 2 for move menu around
-wbkgd(menuwindow,COLOR_PAIR(2));
-set_menu_win(menuholder,panel_window(menu->p));
-set_menu_sub(menuholder,menuwindow);//create padding
-//wprintw(menu,"");
-refresh();
-box(panel_window(menu->p),0,0);
-set_menu_mark(menuholder,">");
-//Print ASCII Logo and creator name
-printboggle(panel_window(menu->p));
-//Print minimum detail instructions on Main Menu
-mvwprintw(panel_window(menu->p),18,2,"Use w/s or up arrow/down arrow to hightlight an option"); 	
-mvwprintw(panel_window(menu->p),19,2,"Press enter to select it"); 
-mvwprintw(panel_window(menu->p),20,2,"Select Rules/Help for the full rules" );
-mvwprintw(panel_window(menu->p),21,2,"Press F1 at anytime to force close the game" );
-post_menu(menuholder);	
-wrefresh(panel_window(menu->p));
+// WINDOW* menuwindow;
+// wbkgd(panel_window(menu->p),COLOR_PAIR(2));
+// set_menu_foreresizemenu(panelnames* pn,);(menuholder,COLOR_PAIR(2));
+// set_menu_back(menuholder,COLOR_PAIR(2));
+// //wbkgd(menu,COLOR_PAIR(1));
+// //this is the "box" holding main menu choices
+// menuwindow=derwin(panel_window(menu->p),10,20,12,3);//adjust last 2 for move menu around
+// wbkgd(menuwindow,COLOR_PAIR(2));
+// set_menu_win(menuholder,panel_window(menu->p));
+// set_menu_sub(menuholder,menuwindow);//create padding
+// //wprintw(menu,"");
+// refresh();
+// box(panel_window(menu->p),0,0);
+// set_menu_mark(menuholder,">");
+// //Print ASCII Logo and creator name
+// printmainmenu(panel_window(menu->p));
+// //Print minimum detail instructions on Main Menu
+// post_menu(menuholder);	
+// wrefresh(panel_window(menu->p));
 refresh();
 while((key=getch())!=(int)KEY_F(1))//F1  since need all letters open for typing answers eventually
 {
@@ -147,49 +139,49 @@ switch(key)
 				//printw("UP pressed");
 				break;
 			case (int)KEY_RESIZE://Working, I think, Resize Case
-			unpost_menu(menuholder);
-			clear();
-			getmaxyx(stdscr,currenty,currentx);
+			resizemenu(menu, menuholder);
 
-			while (currenty<(DEFAULTWINY+OFFSETWINY+5) || currentx<(DEFAULTWINX+OFFSETWINX+5) )//+5 for visual buffer
-			{
-			mvprintw(0,0,"Please resize window to be larger for best game experience");
-			getmaxyx(stdscr,currenty,currentx);
-			refresh();
-			}
-//printw("resized1\n");
-			//napms(1000);//CAUSES DUMB LONG HANG TIME ON RESIZE AFTER CORRECT SIZE LIKE 15s long????
-			// menu=newwin(h,w,offsety,offsetx);
-			WINDOW* menuwindow;
-			del_panel(menu->p);
-			makepanel(&menu,"menu");
-			wbkgd(panel_window(menu->p),COLOR_PAIR(2));
-			set_menu_fore(menuholder,COLOR_PAIR(2));
-			set_menu_back(menuholder,COLOR_PAIR(2));
-//printw("resized2\n");
-			menuwindow=derwin(panel_window(menu->p),10,20,12,2);//adjust last 2 for move menu around
-			//wbkgd(menuwindow,COLOR_PAIR(1));
-//printw("resized3\n");
-			set_menu_win(menuholder,panel_window(menu->p));
-			set_menu_sub(menuholder,menuwindow);//create padding
-			//wprintw(menu,"");
-//printw("resized4\n");
-			refresh();
-			box(panel_window(menu->p),0,0);
-//printw("resized5\n");
-			set_menu_mark(menuholder,">");
-//Print ASCII Logo and creator name
-printboggle(panel_window(menu->p));
-//Print minimum detail instructions on Main Menu
-			mvwprintw(panel_window(menu->p),18,2,"Use w/s or up arrow/down arrow to hightlight an option"); 	
-			mvwprintw(panel_window(menu->p),19,2,"Press enter to select it"); 
-			mvwprintw(panel_window(menu->p),20,2,"Select Rules/Help for the full rules" );
-			mvwprintw(panel_window(menu->p),21,2,"Press F1 at anytime to force close the game" );
-//printw("resized6\n");
-			post_menu(menuholder);	
-			wrefresh(panel_window(menu->p));
-//printw("resized7\n");
-			refresh();
+
+// 			unpost_menu(menuholder);
+// 			clear();
+// 			getmaxyx(stdscr,currenty,currentx);
+
+// 			while (currenty<(DEFAULTWINY+OFFSETWINY+5) || currentx<(DEFAULTWINX+OFFSETWINX+5) )//+5 for visual buffer
+// 			{
+// 			mvprintw(0,0,"Please resize window to be larger for best game experience");
+// 			getmaxyx(stdscr,currenty,currentx);
+// 			refresh();
+// 			}
+// //printw("resized1\n");
+// 			//napms(1000);//CAUSES DUMB LONG HANG TIME ON RESIZE AFTER CORRECT SIZE LIKE 15s long????
+// 			// menu=newwin(h,w,offsety,offsetx);
+// 			WINDOW* menuwindow;
+// 			del_panel(menu->p);
+// 			makepanel(&menu,"menu");
+// 			wbkgd(panel_window(menu->p),COLOR_PAIR(2));
+// 			set_menu_fore(menuholder,COLOR_PAIR(2));
+// 			set_menu_back(menuholder,COLOR_PAIR(2));
+// //printw("resized2\n");
+// 			menuwindow=derwin(panel_window(menu->p),10,20,12,2);//adjust last 2 for move menu around
+// 			//wbkgd(menuwindow,COLOR_PAIR(1));
+// //printw("resized3\n");
+// 			set_menu_win(menuholder,panel_window(menu->p));
+// 			set_menu_sub(menuholder,menuwindow);//create padding
+// 			//wprintw(menu,"");
+// //printw("resized4\n");
+// 			refresh();
+// 			box(panel_window(menu->p),0,0);
+// //printw("resized5\n");
+// 			set_menu_mark(menuholder,">");
+// //Print ASCII Logo and creator name
+// printmainmenu(panel_window(menu->p));
+// //Print minimum detail instructions on Main Menu
+			
+// //printw("resized6\n");
+// 			post_menu(menuholder);	
+// 			wrefresh(panel_window(menu->p));
+// //printw("resized7\n");
+// 			refresh();
 			break;
 
 

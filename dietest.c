@@ -6,7 +6,7 @@
 #include <curses.h>
 #include "bigdice.h"
 //HEADER SHIT I FORGET
-;int randx(int x);
+;int randx(int x);1
 ;int main(void)
 {
 
