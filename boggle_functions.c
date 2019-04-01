@@ -68,7 +68,7 @@ getmaxyx(stdscr,currenty,currentx);
 			{
 			while (currenty<(DEFAULTWINY+OFFSETWINY+5) || currentx<(DEFAULTWINX+OFFSETWINX+5) )//+5 for visual buffer
 				{
-			mvprintw(0,0,"Please resize window to be larger for best game experience");
+			mvprintw(0,0,"Please resize window to be larger until menu appears and then close and restart the program");
 			getmaxyx(stdscr,currenty,currentx);	
 			refresh();
 				}
@@ -461,7 +461,7 @@ void resizefixer(panelnames* pn)
 	getmaxyx(stdscr,currenty,currentx);
 		while (currenty<(DEFAULTWINY+OFFSETWINY+5) || currentx<(DEFAULTWINX+OFFSETWINX+5) )//+5 for visual buffer
 		{
-		mvprintw(0,0,"Please resize window to be larger for best game experience");
+		mvprintw(0,0,"Please resize window to be larger until game appears and then close and restart the program");
 		getmaxyx(stdscr,currenty,currentx);
 		refresh();
 		}
