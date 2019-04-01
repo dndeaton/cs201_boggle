@@ -96,7 +96,7 @@ switch(key)
 					top_panel(menu->p);
 				}
 				//Exit case
-				if (item_name(current_item(menuholder))==item_name(mainmenu[3]))
+				if (item_name(current_item(menuholder))==item_name(mainmenu[2]))
 				{
 					//short wait before exit
 					napms(1000);
