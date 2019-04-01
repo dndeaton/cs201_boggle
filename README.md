@@ -35,7 +35,7 @@ I am unable to voice over it due to lacking an external microphone to record my 
 as my laptop's builtin microphone would not work on my Ubuntu partition
 In the video I demostrate the functions of my program and it's visual limitations
 
-LINK HERE
+https://youtu.be/V5EovuLmHSE
 
 
 #Design decisions and Limitations
