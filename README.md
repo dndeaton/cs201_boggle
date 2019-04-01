@@ -10,7 +10,7 @@ Users are to download all files not within the "Old_Unused" folder and save them
 This should include "DnDBoggle.c","boggle_functions.c", "boggle_functions.h", and "makefile".
 Users are to include their own dictionary file as described below under "#Creating dictionary"
 Users should make sure that they have the ncurses library and its associated sub files installed. 
-Specifically "menu.h" and "panel.h". Users MUST size their terminal window to be at least 75x35 inorder for the program to be playable. If you do not, and resize after startup this can lead to an odd segfault due to how ncurses processes the resizing of the window as a key input. This also mean DO NOT resize the window while the program is running as this will cause the program to segfault. I tried for over a week to fix this and was unable to have resizability working as well as take user input of the board size. I do not know why this is, but it was something I just had to accept.
+Specifically "menu.h" and "panel.h". Users MUST size their terminal window to be Fullscreen inorder for the program to be playable. If you do not, and resize after startup this can lead to an odd segfault due to how ncurses processes the resizing of the window as a key input. This also mean DO NOT resize the window while the program is running as this will cause the program to segfault. I tried for over a week to fix this and was unable to have resizability working as well as take user input of the board size. I do not know why this is, but it was something I just had to accept.
 
 
 #Creating dictionary
