@@ -42,7 +42,7 @@ LINK HERE
 While coding this program I encountered a few key issues that I eventually had to just allow to exist within my program
 The most notable of which are listed here:
 
->Lack of "Qu" cube
+>Lack of "Qu" cube:
 I was orginally going to code a part of my wordsearch function to automatically appaend a "u" 
 to every instance of "Q" that it found while walking the various paths of the board looking for words.
 However, this proved much more difficult of a task than I had imagined and due to time constraints
@@ -51,7 +51,7 @@ This leads to some generated boards having less word paths than others if a "U" 
  Given more time I would have liked ot have figured out how to implement this logic. But, for now I decided it was more
  important to publish and submit a working less true to the source program than one that was unfinished.
  
- >Duplicate word filtering
+ >Duplicate word filtering:
  In my program I wanted to code my path finding function to not find the same word again if it had already encountered that
  word on the current board. However, having persistent visited flags on each node proved to be above my skill level and
  too ambitious for the time constraint I was under. As such my program currently makes use of a multiple file filtering
@@ -59,19 +59,19 @@ This leads to some generated boards having less word paths than others if a "U" 
  "wordsfound.txt" file. This method works fairly well for larger board than can be displayed within my program
  due to being able to show the found words outside of the ncurses display and saving them in an easily searchable list for player(s) to compute their score.
  
- >Lack of built in player scoring
+ >Lack of built in player scoring:
  In my program there is currently no user interface way to enter your found words to compute your score. This is due to the above
  stated issues with filtering out duplicate words and ncurses user input. I instead opted to created a sorted "wordsfound.txt"
  file for player(s) to reference on their own. This also allows for players to see all the words they did not find and possibly expand their vocabulary as a result.
  
- >Lack of built in timer system
+ >Lack of built in timer system:
  Originially for my program I had wanted to an adjustable timer for each game that would be displayed with the board.
  This however proved to again be a bit too ambitious for my expericance and the time frame I was working in.
  I instead instruct players in the "Rules" window to set their own timer for whatever time they prefer, while listing
  that the standard is 3 minutes. Since they board can be whatever size players want, I decided that allowing them to create
  thier own timer was a better decision.
  
->Possible bugs and/or hardware limitations
+>Possible bugs and/or hardware limitations:
 Within my program it is possible to generate upto a ((2^31)-1)x((2^31)-1) board, this limitation is due to how the "atoi"
 function returns its integer value as a signed number thereby making it impossible to pass in a higher value. This is also the reason for the 10 digit limitation on number size for user innput. (2^31)-1 is 10 digits, therefore I limited the input string to that length for memory and error preventions sake. Another small flaw that came about due to the functionality of "atoi" in C11
 is that my user in put filtering works for strings like "e4" or "r", but not "4ee" or "5e3" due to atoi code. In the case of 
@@ -89,7 +89,7 @@ input similar to "30e" or "4r7" my program will interpret that input as "30" and
  >Ubuntu 18.04 for having a built in words list file for the English language and making my life infinitely easier
  
  >Dr. Anderson for pointing me in the right direction on how to approach debugging and for showing me how to use system
- commands within C11.
+ commands within C11 and Ubuntu
  
  >Wikipedia for the rules and components of the Boggle board game that I referenced an innumerable amount of times
  while coding this project
