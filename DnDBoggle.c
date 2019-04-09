@@ -62,6 +62,7 @@ resizemenu(menu, menuholder);
 refresh();
 while((key=getch())!=(int)KEY_F(1))//F1  since need all letters open for typing answers eventually
 {
+	resizemenu(menu, menuholder);
 
 switch(key)
 	    {	case (int)KEY_DOWN:
@@ -94,6 +95,7 @@ switch(key)
 					resizemenu(menu, menuholder);
 					show_panel(menu->p);
 					top_panel(menu->p);
+					nodelay(stdscr, FALSE);
 				}
 				//Exit case
 				if (item_name(current_item(menuholder))==item_name(mainmenu[2]))
